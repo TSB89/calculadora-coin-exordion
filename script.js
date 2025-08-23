@@ -75,24 +75,40 @@ function calculatePlayerPurchase() {
     }
     
     const costPerCoin = price / coins;
-    const officialPrice = coins * 1.00; // Preço oficial sem bonificações (R$ 1,00 por coin)
-    const discount = ((1.00 - costPerCoin) / 1.00) * 100;
-    const savings = officialPrice - price;
+    
+    // Calcular preço oficial COM bonificações (simulando a melhor situação possível)
+    const basePrice = coins * 1.00; // R$ 1,00 por coin base
+    let bonusPercentage = 0;
+    
+    // Aplicar bonificações baseadas no valor (considerando que para obter essas coins, seria necessário esse investimento)
+    if (basePrice >= 150) {
+        bonusPercentage = 0.15; // 10% base + 5% cupom (máximo possível)
+    } else if (basePrice >= 100) {
+        bonusPercentage = 0.10; // 5% base + 5% cupom
+    } else {
+        bonusPercentage = 0.05; // só cupom
+    }
+    
+    // Para obter a mesma quantidade de coins, quanto custaria na loja oficial?
+    const officialPriceWithBonus = coins / (1 + bonusPercentage);
+    
+    const discount = ((officialPriceWithBonus - price) / officialPriceWithBonus) * 100;
+    const savings = officialPriceWithBonus - price;
     
     // Atualizar display
     document.getElementById('player-cost-per-coin').textContent = `R$ ${costPerCoin.toFixed(4)}`;
     document.getElementById('player-discount').textContent = `${discount.toFixed(1)}%`;
     document.getElementById('player-savings').textContent = `R$ ${savings.toFixed(2)}`;
-    document.getElementById('official-equivalent').textContent = `R$ ${officialPrice.toFixed(2)}`;
+    document.getElementById('official-equivalent').textContent = `R$ ${officialPriceWithBonus.toFixed(2)}`;
     
     // Atualizar dica
     const tipElement = document.getElementById('player-tip');
     if (discount > 0) {
-        tipElement.textContent = `Ótimo negócio! Você economiza ${discount.toFixed(1)}% comprando de jogadores.`;
-    } else if (discount < 0) {
-        tipElement.textContent = `Cuidado! Está pagando ${Math.abs(discount).toFixed(1)}% a mais que o preço oficial.`;
+        tipElement.textContent = `Ótimo negócio! Você economiza ${discount.toFixed(1)}% vs loja oficial (c/ bonificações).`;
+    } else if (discount < -5) {
+        tipElement.textContent = `Cuidado! Está pagando ${Math.abs(discount).toFixed(1)}% a mais que a loja oficial.`;
     } else {
-        tipElement.textContent = 'Preço igual ao oficial. Considere as bonificações da loja oficial.';
+        tipElement.textContent = 'Preço similar ao oficial. Considere as vantagens de cada opção.';
     }
 }
 
