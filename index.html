@@ -1,15 +1,45 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora Exordion Coin</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+    <!-- Menu de Navegação -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-logo">⚡</span>
+                <span class="nav-title">Exordion Tools</span>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <a href="https://tsb89.github.io/calculadora-runa-exordion/" class="nav-link">
+                    <span class="nav-icon">📜</span>
+                    Calculadora de Runas
+                </a>
+                <a href="https://tsb89.github.io/calculadora-coin-exordion/" class="nav-link active">
+                    <span class="nav-icon">🪙</span>
+                    Calculadora de Coin
+                </a>
+                <a href="https://tsb89.github.io/catalogo-fragmento-exordion/" class="nav-link">
+                    <span class="nav-icon">💎</span>
+                    Catálogo de Fragmentos
+                </a>
+            </div>
+            <div class="nav-toggle" id="nav-toggle">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
     <div class="container">
         <h1>💰 Calculadora Exordion Coin 💰</h1>
-        
+
         <div class="info-section">
             <h2>📋 Informações da Exordion Coin</h2>
             <div class="info-grid">
@@ -18,17 +48,18 @@
                     <p><span class="highlight">1 Exordion Coin = R$ 1,00</span></p>
                     <p>Moeda premium do servidor para aquisição de itens especiais e vantagens no jogo.</p>
                 </div>
-                
+
                 <div class="info-card">
                     <h3>🎯 Bonificações Progressivas</h3>
                     <p><span class="highlight">R$ 100+:</span> +5% de bonificação</p>
                     <p><span class="highlight">R$ 150+:</span> +10% de bonificação</p>
                     <p><span class="highlight">Cupom:</span> +5% adicional em qualquer compra</p>
                 </div>
-                
+
                 <div class="info-card">
                     <h3>⚖️ Conversão para GP</h3>
-                    <p>As Exordion Coins podem ser vendidas por <span class="highlight">GP (Gold Pieces)</span> dentro do jogo.</p>
+                    <p>As Exordion Coins podem ser vendidas por <span class="highlight">GP (Gold Pieces)</span> dentro
+                        do jogo.</p>
                     <p>O valor varia conforme a economia do servidor.</p>
                 </div>
             </div>
@@ -39,16 +70,18 @@
                 <h2>💳 Calculadora de Compra (Site)</h2>
                 <div class="input-group">
                     <label class="input-label" for="purchase-amount">Valor a Pagar (R$)</label>
-                    <input type="number" class="input-field" id="purchase-amount" placeholder="Ex: 150" min="0" step="0.01">
+                    <input type="number" class="input-field" id="purchase-amount" placeholder="Ex: 150" min="0"
+                        step="0.01">
                 </div>
-                
+
                 <div class="input-group">
                     <div class="checkbox-item" style="display: flex; align-items: center; gap: 10px; margin-top: 10px;">
                         <input type="checkbox" id="coupon-bonus" style="transform: scale(1.2); accent-color: #87ceeb;">
-                        <label for="coupon-bonus" style="color: #ffd700; font-weight: bold; cursor: pointer;">🎫 Usar Cupom (+5% bonificação)</label>
+                        <label for="coupon-bonus" style="color: #ffd700; font-weight: bold; cursor: pointer;">🎫 Usar
+                            Cupom (+5% bonificação)</label>
                     </div>
                 </div>
-                
+
                 <div class="results-area">
                     <div class="result-item">
                         <span class="result-label">Coins Base:</span>
@@ -71,9 +104,10 @@
                         <span class="result-value" id="cost-per-coin">R$ 1,00</span>
                     </div>
                 </div>
-                
+
                 <div class="discount-info">
-                    <strong>💡 Dica:</strong> <span id="discount-tip">Compre mais para obter bonificações maiores!</span>
+                    <strong>💡 Dica:</strong> <span id="discount-tip">Compre mais para obter bonificações
+                        maiores!</span>
                 </div>
             </div>
 
@@ -83,12 +117,12 @@
                     <label class="input-label" for="player-coins">Quantidade de Coins</label>
                     <input type="number" class="input-field" id="player-coins" placeholder="Ex: 1000" min="0" step="1">
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label" for="player-price">Preço Total (R$)</label>
                     <input type="number" class="input-field" id="player-price" placeholder="Ex: 60" min="0" step="0.01">
                 </div>
-                
+
                 <div class="results-area">
                     <div class="result-item">
                         <span class="result-label">Preço por Coin:</span>
@@ -107,13 +141,14 @@
                         <span class="result-value" id="official-equivalent">R$ 0,00</span>
                     </div>
                 </div>
-                
+
                 <div class="player-info">
-                    <strong>🤝 Compra de Jogador:</strong> <span id="player-tip">Insira os valores para calcular o preço unitário!</span>
+                    <strong>🤝 Compra de Jogador:</strong> <span id="player-tip">Insira os valores para calcular o preço
+                        unitário!</span>
                 </div>
             </div>
         </div>
-        
+
         <div class="gp-calculator-section">
             <div class="calculator-card">
                 <h2>🏆 Calculadora GP → Real</h2>
@@ -121,17 +156,17 @@
                     <label class="input-label" for="coins-bought">Exordion Coins Compradas</label>
                     <input type="number" class="input-field" id="coins-bought" placeholder="Ex: 100" min="0" step="1">
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label" for="real-paid">Valor Pago em R$</label>
                     <input type="number" class="input-field" id="real-paid" placeholder="Ex: 85" min="0" step="0.01">
                 </div>
-                
+
                 <div class="input-group">
                     <label class="input-label" for="gp-per-coin">GP por Exordion Coin (no jogo)</label>
                     <input type="number" class="input-field" id="gp-per-coin" placeholder="Ex: 1500" min="0" step="1">
                 </div>
-                
+
                 <div class="results-area">
                     <div class="result-item">
                         <span class="result-label">Custo por Coin:</span>
@@ -146,24 +181,25 @@
                         <span class="result-value highlight" id="cost-1000-gp">R$ 0,00</span>
                     </div>
                     <div class="result-item">
-                        <span class="result-label">Custo de 1 GP:</span>
-                        <span class="result-value" id="cost-1-gp">R$ 0,0000</span>
+                        <span class="result-label">Custo de 100.000 GP:</span>
+                        <span class="result-value" id="cost-1-gp">R$ 0,00</span>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <footer class="footer">
             <div class="footer-content">
                 <p class="footer-text">
-                    Desenvolvida por 
+                    Desenvolvida por
                     <a href="https://github.com/TSB89" target="_blank" class="github-link">
                         <svg class="github-icon" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                            <path
+                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
                         </svg>
                         Thiago da Silva Bezerra
                     </a>
-                    com auxílio da 
+                    com auxílio da
                     <a href="https://claude.ai" target="_blank" class="claude-link">Claude.ai</a>
                 </p>
                 <p class="footer-subtitle">
@@ -174,4 +210,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
