@@ -2,6 +2,16 @@
 
 Uma calculadora web interativa e responsiva para otimizar investimentos em Exordion Coins no MMORPG Tibia, desenvolvida com HTML, CSS e JavaScript vanilla.
 
+## 📖 Como Executar
+Você pode acessar o projeto de duas formas:  
+
+1. **Via GitHub Pages** (mais prático):  
+   👉 [Acesse aqui](https://tsb89.github.io/calculadora-coin-exordion/)  
+
+2. **Localmente no navegador**:  
+   - Clone o repositório ou baixe os arquivos.  
+   - Abra o arquivo `index.html` no navegador.  
+
 ## ✨ Características
 
 ### 💳 Calculadora de Compra Oficial Inteligente
