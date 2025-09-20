@@ -2,10 +2,10 @@ function calculatePurchase() {
     const amount = parseFloat(document.getElementById('purchase-amount').value) || 0;
     const baseCoins = amount; // R$ 1,00 = 1 coin
     const hasCoupon = document.getElementById('coupon-bonus').checked;
-    
+
     let bonusPercentage = 0;
     let bonusText = '0%';
-    
+
     // Aplicar bonificações baseadas no valor em reais
     if (amount >= 150) {
         bonusPercentage = 0.10;
@@ -14,7 +14,7 @@ function calculatePurchase() {
         bonusPercentage = 0.05;
         bonusText = '5%';
     }
-    
+
     // Adicionar bonificação do cupom (pode ser usado em qualquer valor)
     if (hasCoupon) {
         bonusPercentage += 0.05;
@@ -25,18 +25,18 @@ function calculatePurchase() {
             bonusText = `${totalBonus}%`;
         }
     }
-    
+
     const bonusCoins = Math.floor(baseCoins * bonusPercentage);
     const totalCoins = baseCoins + bonusCoins;
     const costPerCoin = amount > 0 ? amount / totalCoins : 1;
-    
+
     // Atualizar display
     document.getElementById('base-coins').textContent = Math.floor(baseCoins);
     document.getElementById('bonus-applied').textContent = bonusText;
     document.getElementById('bonus-coins').textContent = bonusCoins;
     document.getElementById('coins-received').textContent = Math.floor(totalCoins);
     document.getElementById('cost-per-coin').textContent = totalCoins > 0 ? `R$ ${costPerCoin.toFixed(2)}` : 'R$ 1,00';
-    
+
     // Atualizar dica
     const tipElement = document.getElementById('discount-tip');
     if (amount === 0) {
@@ -63,7 +63,7 @@ function calculatePurchase() {
 function calculatePlayerPurchase() {
     const coins = parseFloat(document.getElementById('player-coins').value) || 0;
     const price = parseFloat(document.getElementById('player-price').value) || 0;
-    
+
     if (coins === 0 || price === 0) {
         // Reset display if any field is empty
         document.getElementById('player-cost-per-coin').textContent = 'R$ 0,00';
@@ -73,13 +73,13 @@ function calculatePlayerPurchase() {
         document.getElementById('player-tip').textContent = 'Insira os valores para calcular o preço unitário!';
         return;
     }
-    
+
     const costPerCoin = price / coins;
-    
+
     // Calcular preço oficial COM bonificações (simulando a melhor situação possível)
     const basePrice = coins * 1.00; // R$ 1,00 por coin base
     let bonusPercentage = 0;
-    
+
     // Aplicar bonificações baseadas no valor (considerando que para obter essas coins, seria necessário esse investimento)
     if (basePrice >= 150) {
         bonusPercentage = 0.15; // 10% base + 5% cupom (máximo possível)
@@ -88,19 +88,19 @@ function calculatePlayerPurchase() {
     } else {
         bonusPercentage = 0.05; // só cupom
     }
-    
+
     // Para obter a mesma quantidade de coins, quanto custaria na loja oficial?
     const officialPriceWithBonus = coins / (1 + bonusPercentage);
-    
+
     const discount = ((officialPriceWithBonus - price) / officialPriceWithBonus) * 100;
     const savings = officialPriceWithBonus - price;
-    
+
     // Atualizar display
     document.getElementById('player-cost-per-coin').textContent = `R$ ${costPerCoin.toFixed(4)}`;
     document.getElementById('player-discount').textContent = `${discount.toFixed(1)}%`;
     document.getElementById('player-savings').textContent = `R$ ${savings.toFixed(2)}`;
     document.getElementById('official-equivalent').textContent = `R$ ${officialPriceWithBonus.toFixed(2)}`;
-    
+
     // Atualizar dica
     const tipElement = document.getElementById('player-tip');
     if (discount > 0) {
@@ -116,26 +116,26 @@ function calculateGPConversion() {
     const coinsBought = parseFloat(document.getElementById('coins-bought').value) || 0;
     const realPaid = parseFloat(document.getElementById('real-paid').value) || 0;
     const gpPerCoin = parseFloat(document.getElementById('gp-per-coin').value) || 0;
-    
+
     if (coinsBought === 0 || realPaid === 0 || gpPerCoin === 0) {
         // Reset display if any field is empty
         document.getElementById('real-cost-per-coin').textContent = 'R$ 0,00';
         document.getElementById('total-gp-obtained').textContent = '0 GP';
         document.getElementById('cost-1000-gp').textContent = 'R$ 0,00';
-        document.getElementById('cost-1-gp').textContent = 'R$ 0,0000';
+        document.getElementById('cost-1-gp').textContent = 'R$ 0,00';
         return;
     }
-    
+
     const realCostPerCoin = realPaid / coinsBought;
     const totalGPObtained = coinsBought * gpPerCoin;
     const costPer1000GP = (realPaid / totalGPObtained) * 1000;
-    const costPer1GP = realPaid / totalGPObtained;
-    
+    const costPer1GP = (realPaid / totalGPObtained) * 100000;
+
     // Atualizar display
     document.getElementById('real-cost-per-coin').textContent = `R$ ${realCostPerCoin.toFixed(2)}`;
     document.getElementById('total-gp-obtained').textContent = `${totalGPObtained.toLocaleString()} GP`;
     document.getElementById('cost-1000-gp').textContent = `R$ ${costPer1000GP.toFixed(2)}`;
-    document.getElementById('cost-1-gp').textContent = `R$ ${costPer1GP.toFixed(4)}`;
+    document.getElementById('cost-1-gp').textContent = `R$ ${costPer1GP.toFixed(2)}`;
 }
 
 // Event listeners
@@ -151,3 +151,24 @@ document.getElementById('gp-per-coin').addEventListener('input', calculateGPConv
 calculatePurchase();
 calculatePlayerPurchase();
 calculateGPConversion();
+
+// Menu Mobile Toggle
+document.addEventListener('DOMContentLoaded', function () {
+    const navToggle = document.getElementById('nav-toggle');
+    const navMenu = document.getElementById('nav-menu');
+
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function () {
+            navMenu.classList.toggle('active');
+            navToggle.classList.toggle('active');
+        });
+
+        // Fechar menu ao clicar em um link (mobile)
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                navToggle.classList.remove('active');
+            });
+        });
+    }
+});
