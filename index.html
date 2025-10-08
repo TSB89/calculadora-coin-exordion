@@ -188,6 +188,49 @@
             </div>
         </div>
 
+        <div class="exordion-items-section">
+            <div class="calculator-card">
+                <h2>🧙‍♂️ Calculadora Itens Exordion (GP → Pontos)</h2>
+
+                <div class="item-selector"
+                    style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+                    <img src="Imagens/boots.gif" alt="Exordion Boots" width="48" height="48" title="Exordion Boots">
+                    <img src="Imagens/ring.gif" alt="Exordion Ring" width="48" height="48" title="Exordion Ring">
+                    <img src="Imagens/food.gif" alt="Exordion Food" width="48" height="48" title="Exordion Food">
+                    <img src="Imagens/amulet.gif" alt="Exordion Amulet" width="48" height="48" title="Exordion Amulet">
+                    <img src="Imagens/torch.gif" alt="Exordion Torch" width="48" height="48" title="Exordion Torch">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="item-gp-paid">Valor Pago (GP)</label>
+                    <input type="number" class="input-field" id="item-gp-paid" placeholder="Ex: 38000" min="0" step="1">
+                </div>
+
+                <div class="input-group">
+                    <label class="input-label" for="item-points">Valor de Venda (Pontos)</label>
+                    <input type="number" class="input-field" id="item-points" placeholder="Ex: 125" min="0" step="1">
+                </div>
+
+                <div class="results-area">
+                    <div class="result-item">
+                        <span class="result-label">Custo por Ponto:</span>
+                        <span class="result-value" id="cost-per-point">0 GP</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="result-label">Custo por 10 Pontos:</span>
+                        <span class="result-value highlight" id="cost-per-10-points">0 GP</span>
+                    </div>
+                </div>
+
+                <div class="discount-info">
+                    <strong>💡 Dica:</strong> <span id="item-tip">Compre itens por GP e revenda com deságio por pontos
+                        no mercado.
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
         <footer class="footer">
             <div class="footer-content">
                 <p class="footer-text">

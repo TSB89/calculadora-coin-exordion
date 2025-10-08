@@ -133,10 +133,44 @@ function calculateGPConversion() {
 
     // Atualizar display
     document.getElementById('real-cost-per-coin').textContent = `R$ ${realCostPerCoin.toFixed(2)}`;
-    document.getElementById('total-gp-obtained').textContent = `${totalGPObtained.toLocaleString()} GP`;
+    document.getElementById('total-gp-obtained').textContent = `${totalGPObtained.toLocaleString("pt-BR", { minimumFractionDigits: 0, maximumFractionDigits: 0 })} GP`;
     document.getElementById('cost-1000-gp').textContent = `R$ ${costPer1000GP.toFixed(2)}`;
     document.getElementById('cost-1-gp').textContent = `R$ ${costPer1GP.toFixed(2)}`;
 }
+
+function calculateItemPointCost() {
+    const gpPaid = parseFloat(document.getElementById('item-gp-paid').value) || 0;
+    const points = parseFloat(document.getElementById('item-points').value) || 0;
+
+    if (gpPaid === 0 || points === 0) {
+        document.getElementById('cost-per-point').textContent = '0 GP';
+        document.getElementById('cost-per-10-points').textContent = '0 GP';
+        document.getElementById('item-tip').textContent = 'Compre itens por GP e revenda com deságio por pontos no mercado.';
+        return;
+    }
+
+    const costPerPoint = gpPaid / points;
+    const costPer10Points = costPerPoint * 10;
+
+    // formatador para números inteiros no padrão brasileiro (com pontos de milhar)
+    const gpFormatter = new Intl.NumberFormat('pt-BR', {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    });
+
+    document.getElementById('cost-per-point').textContent = `${gpFormatter.format(costPerPoint)} GP`;
+    document.getElementById('cost-per-10-points').textContent = `${gpFormatter.format(costPer10Points)} GP`;
+
+    document.getElementById('item-tip').textContent =
+        `Cada Exordion Coin custou ${gpFormatter.format(costPer10Points)} GP.`;
+}
+
+// Event listeners
+document.getElementById('item-gp-paid').addEventListener('input', calculateItemPointCost);
+document.getElementById('item-points').addEventListener('input', calculateItemPointCost);
+
+// Calcular valores iniciais
+calculateItemPointCost();
 
 // Event listeners
 document.getElementById('purchase-amount').addEventListener('input', calculatePurchase);
